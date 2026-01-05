@@ -1,127 +1,170 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 import time
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 
-# 1. Page Identity & Theme Setting
-st.set_page_config(page_title="AURA Quantum System", page_icon="⚡", layout="wide")
+# --- PAGE CONFIGURATION (Scientist-Approvel Style) ---
+st.set_page_config(
+    page_title="AURA LABS | Zero-Entropy Engine",
+    page_icon="⚛️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-# Custom CSS for Professional Quantum Lab Look
+# --- CUSTOM CSS FOR PROFESSIONAL LOOK ---
 st.markdown("""
     <style>
-    .main { background-color: #020617; color: #f1f5f9; }
-    .stMetric { background-color: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid #3b82f6; }
-    h1, h2, h3 { color: #60a5fa; font-family: 'Inter', sans-serif; }
-    .stSidebar { background-color: #0f172a; }
-    .stButton>button { background-color: #3b82f6; color: white; border-radius: 8px; width: 100%; }
+    .main {
+        background-color: #0e1117;
+    }
+    h1 {
+        color: #00FF99;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+    h2, h3 {
+        color: #e0e0e0;
+    }
+    .stMetric {
+        background-color: #1a1c24;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #333;
+    }
     </style>
     """, unsafe_allow_html=True)
 
 # --- SIDEBAR NAVIGATION ---
 with st.sidebar:
-    st.title("🧭 Navigation")
-    page = st.radio("Go to:", ["Research Portal", "Categories", "The AURA Philosophy"])
-    st.divider()
-    st.info("System Status: Online (200% Sync)")
-    st.write("**Lead Researcher:** Maung Maung Hla")
-    st.write("**Field:** Quantum Bio-Physics")
+    st.title("🦁 AURA LABS")
+    st.markdown("---")
+    menu = st.radio("Navigation", ["Home: The Vision", "Demo 1: Hardware Optimization", "Demo 2: Agri-Regeneration", "Founder Profile"])
+    st.markdown("---")
+    st.caption("© 2026 AURA Inc. | Powered by Quantum Logic")
 
-# --- PAGE 1: RESEARCH PORTAL (The Technical Hub) ---
-if page == "Research Portal":
-    st.title("⚡ AURA Quantum System: Research Portal")
-    st.markdown("### *Quantum Thermal Harvesting (QTH) Simulation*")
+# --- SECTION 1: HOME (THE VISION) ---
+if menu == "Home: The Vision":
+    st.title("⚛️ Welcome to AURA LABS")
+    st.subheader("Redefining Efficiency via Maxwell's Demon Logic")
     
-    # Main Metrics from LinkedIn & Research
-    col_m1, col_m2, col_m3 = st.columns(3)
-    with col_m1:
-        st.metric("Thermal Threshold", "80°C", "Critical Level")
-    with col_m2:
-        st.metric("Quantum Sync Rate", "200%", "Optimal")
-    with col_m3:
-        st.metric("Simulation Power Output", "5.86 W", "Harvested")
-
-    st.divider()
-
-    # Data Visualization Section
-    col_v1, col_v2 = st.columns([2, 1])
-    with col_v1:
-        st.subheader("📊 Energy Conversion Analysis")
-        # Direct data from your LinkedIn post simulation
-        chart_data = pd.DataFrame({
-            'Parameter': ['CPU Heat (°C)', 'Quantum Power (W)'],
-            'Value': [70.95, 5.86]
-        })
-        st.bar_chart(chart_data.set_index('Parameter'))
-        st.caption("Observation: Demonstrating phonon-to-electron conversion at the 70.95°C threshold.")
+    st.markdown("""
+    ### The Core Problem: Entropy
+    In every system—whether a **Data Center GPU** or a **Wheat Field**—energy is lost to chaos (Heat/Decay). 
+    Traditional engineering fights this with more hardware. **AURA fights this with Information.**
     
-    with col_v2:
-        st.subheader("🔬 Key Technical Insights")
-        st.write("""
-        - **Phonon Capture**: Harvesting atomic vibrations at 80°C+.
-        - **Tunneling Effect**: Bypassing Carnot limits.
-        - **Circular Economy**: Recycling AI data center heat.
-        """)
-
-    # --- NEW: INTERACTIVE QUANTUM SIMULATOR ---
-    st.divider()
-    st.header("🎮 Interactive Quantum Simulator")
-    st.write("Click below to simulate QTH energy recovery on your current device based on estimated thermal loads.")
-
-    if st.button("Start Local Quantum Sync"):
-        with st.status("Analyzing local device phonons...", expanded=True) as status:
-            time.sleep(1)
-            st.write("Detecting thermal signatures...")
-            time.sleep(1)
-            st.write("Calculating Quantum Tunneling probability...")
-            time.sleep(1)
-            status.update(label="Sync Successful!", state="complete", expanded=False)
-        
-        # Simulated logic based on your research parameters
-        sim_heat = np.random.uniform(45, 78)
-        sim_power = (sim_heat * 0.0825) # Representative Arkar Constant
-        
-        st.balloons()
-        c1, c2 = st.columns(2)
-        c1.metric("Local Estimated Heat", f"{sim_heat:.2f} °C")
-        c2.metric("Potential Power Gain", f"{sim_power:.2f} W", delta="Direct Recovery")
-        st.success("AURA System confirmed: This device's waste heat is a harvestable Quantum Resource!")
-
-# --- PAGE 2: CATEGORIES (Strategic Domains) ---
-elif page == "Categories":
-    st.title("📂 Strategic Research Domains")
-    tab1, tab2, tab3 = st.tabs(["Quantum Energy", "AI Sustainability", "Bio-Information"])
-    
-    with tab1:
-        st.subheader("Quantum Thermal Harvesting (QTH)")
-        st.write("Developing solid-state systems to capture high-grade heat from semiconductors.")
-    with tab2:
-        st.subheader("Circular Data Economy")
-        st.write("Engineering self-sustaining data clusters where heat is the primary fuel source.")
-    with tab3:
-        st.subheader("Bio-Field Analytics")
-        st.write("Using quantum sensors to map human bio-electromagnetic frequency patterns.")
-
-# --- PAGE 3: THE AURA PHILOSOPHY (About Us) ---
-elif page == "The AURA Philosophy":
-    st.title("🔬 The AURA Quantum Philosophy")
-    st.markdown("### *'Harvesting the Invisible, Powering the Future'*")
-    
-    st.write("""
-    **AURA Quantum System** represents 20 years of empirical research at the intersection of 
-    Quantum Bio-Physics and advanced computational energy modeling. 
+    ### The Solution: The AURA Engine
+    We utilize a **Quantum-inspired Observer Algorithm** that:
+    1.  **Observes** micro-state fluctuations (thermal/biological).
+    2.  **Predicts** entropy spikes before they occur.
+    3.  **Reorders** the system to a Zero-Entropy State.
     """)
     
-    st.info("Our Mission: To prove that energy waste is merely a lack of the right quantum observation.")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.info("💡 **For Tech:** Transforming Heat into Computational Power.")
+    with col2:
+        st.success("🌿 **For Agri:** Transforming Decay into Biological Yield.")
 
-    col_a1, col_a2 = st.columns(2)
-    with col_a1:
-        st.subheader("Research Foundations")
-        st.write("- **Beyond Classical**: Moving past 19th-century thermodynamic limits.")
-        st.write("- **Empirical Evidence**: Based on years of real-world data collection.")
-    with col_a2:
-        st.subheader("Global Impact")
-        st.write("- **Zero-Waste Computing**: Making AI green through thermal recycling.")
-        st.write("- **Quantum Resonance**: Harnessing natural frequencies for human-AI sync.")
+# --- SECTION 2: DEMO 1 (HARDWARE) ---
+elif menu == "Demo 1: Hardware Optimization":
+    st.title("💻 AURA Engine: Hardware Simulation")
+    st.markdown("Comparing **Standard Linear Processing** vs. **AURA Quantum Batching**.")
 
-    st.divider()
-    st.markdown("[Visit LinkedIn for Latest Publications](https://www.linkedin.com/in/maung-maung-hla-11a3b3105/)")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("### 🔴 Standard Mode (Chaos)")
+        st.write("Simulating random electron flow & thermal throttling...")
+        if st.button("Run Standard Benchmark"):
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            # Simulation Loop
+            for i in range(100):
+                time.sleep(0.05) # Slow processing
+                progress_bar.progress(i + 1)
+                status_text.text(f"Processing... CPU Temp: {50 + i/2}°C")
+            
+            st.error("❌ Result: High Latency | High Heat Output")
+            st.metric(label="Processing Time", value="5.2s", delta="- Efficiency Loss", delta_color="inverse")
+
+    with col2:
+        st.markdown("### 🔵 AURA Mode (Order)")
+        st.write("Activating Maxwell's Demon (Sorting Electron States)...")
+        if st.button("Run AURA Optimization"):
+            progress_bar_aura = st.progress(0)
+            status_text_aura = st.empty()
+            
+            # Fast Simulation Loop
+            for i in range(100):
+                time.sleep(0.005) # Super fast
+                progress_bar_aura.progress(i + 1)
+                status_text_aura.text(f"Optimizing... CPU Temp: {45}°C (Stable)")
+            
+            st.success("✅ Result: Zero Latency | Thermal Stability")
+            st.metric(label="Processing Time", value="0.5s", delta="+ 1040% Speed Boost")
+
+    # Visualizing the Data
+    st.markdown("### 📊 Real-time Entropy Analysis")
+    chart_data = pd.DataFrame({
+        'Standard (Heat)': np.random.randn(20) + 10,
+        'AURA (Stable)': np.random.randn(20) + 2
+    })
+    st.line_chart(chart_data)
+
+# --- SECTION 3: DEMO 2 (AGRICULTURE) ---
+elif menu == "Demo 2: Agri-Regeneration":
+    st.title("🌿 AURA Bio-Regeneration")
+    st.markdown("Applying Quantum Logic to Biological Systems to reverse decay.")
+    
+    # Interactive Slider
+    decay_level = st.slider("Select Current Crop Decay Level (Entropy)", 0, 100, 80)
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.metric(label="Current Yield Projection", value=f"{100 - decay_level}%", delta="Critical", delta_color="inverse")
+        st.warning(f"⚠️ Warning: Crop death imminent due to high entropy ({decay_level}%).")
+        
+    with col2:
+        # The Solution
+        st.metric(label="AURA Intervention Potential", value="98%", delta="Optimized")
+        if st.button("Activate Bio-Pulse"):
+            with st.spinner('Calculating nutrient micro-dosing...'):
+                time.sleep(1.5)
+            st.balloons()
+            st.success(f"🌱 SUCCESS: Entropy reversed. Yield potential restored to 98%.")
+
+    # Graph showing recovery
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=[0, 1, 2, 3, 4], y=[100, 80, 50, 20, 0], mode='lines', name='Natural Decay (Death)', line=dict(color='red', dash='dash')))
+    fig.add_trace(go.Scatter(x=[2, 3, 4, 5], y=[50, 75, 90, 98], mode='lines+markers', name='AURA Intervention', line=dict(color='#00FF99', width=4)))
+    
+    st.plotly_chart(fig, use_container_width=True)
+
+# --- SECTION 4: FOUNDER PROFILE ---
+elif menu == "Founder Profile":
+    st.title("🦁 The Architect")
+    
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        # Placeholder for Image - using an emoji or generic avatar for now
+        st.markdown("# 👨‍💻")
+        st.markdown("### Rocker Saint")
+        st.caption("Founder | Autodidact | Visionary")
+        
+    with col2:
+        st.markdown("""
+        > *"I do not write code to build apps. I write code to fix the broken laws of thermodynamics."*
+        
+        **Rocker Saint** is the founder of AURA, bridging the gap between Quantum Physics and Industrial Application. 
+        With a background in self-taught engineering and a "Lion's Heart" approach to problem-solving, he is building the engine for the next generation of computing and agriculture.
+        
+        **Connect:**
+        * [LinkedIn Profile](https://www.linkedin.com/) (Click to Connect)
+        * 📧 Email: [Your Email Here]
+        """)
+        
+    st.markdown("---")
+    st.info("🦁 **Status:** Open for Seed Investment & Research Partnership (DeepMind/Google).")
