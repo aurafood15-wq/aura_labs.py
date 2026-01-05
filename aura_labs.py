@@ -1,36 +1,59 @@
 import streamlit as st
+import numpy as np
+import pandas as pd
+import time
 
-# AURA AI Labs - Quantum Research Interface
-st.set_page_config(page_title="AURA AI Labs", page_icon="🔬", layout="wide")
+# Page Setting
+st.set_page_config(page_title="AURA AI Labs", page_icon="🧬", layout="wide")
 
-# Styling for a professional Lab Vibe
+# Custom CSS for Professional Scientific Look
 st.markdown("""
     <style>
-    .stApp { background-color: #050a14; color: #e0e0e0; }
-    h1 { color: #00d4ff; }
-    .stAlert { background-color: #112244; border: 1px solid #00d4ff; }
+    .main { background-color: #020617; color: #f8fafc; }
+    .stMetric { background-color: #1e293b; padding: 20px; border-radius: 15px; border: 1px solid #38bdf8; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    h1 { color: #38bdf8; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+    .stAlert { border-radius: 12px; border: none; background-color: #0f172a; border-left: 5px solid #38bdf8; }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🔬 AURA AI Labs")
-st.markdown("### Practical Quantum Information & Bio-Systems Portal")
+# Header Section
+st.title("🧬 AURA AI Labs")
+st.markdown("#### *The Nexus of Quantum Bio-Physics & Artificial Intelligence*")
 st.divider()
 
-# Core Research Sections
-col1, col2 = st.columns([2, 1])
+# Sidebar Control
+with st.sidebar:
+    st.image("https://img.icons8.com/nolan/96/atom.png")
+    st.header("Lab Controls")
+    sync_mode = st.toggle("Quantum Sync Mode", value=True)
+    power_level = st.slider("Power Intensity (THz)", 0, 1000, 432)
+    st.info(f"System running at frequency: {power_level} Hz (Healing Frequency)")
 
+# Core Metrics
+col1, col2, col3 = st.columns(3)
 with col1:
-    st.header("Fundamental Empirical Research")
-    st.write("#### 1. Bio-Field Mapping (Aura Analysis)")
-    st.write("Measurement of electromagnetic frequency emissions from biological systems as quantum oscillators.")
-    
-    st.write("#### 2. Wave-Particle Interaction")
-    st.write("Experimental data on how human observation (The Observer Effect) influences quantum state collapses.")
-
+    st.metric(label="Quantum Entanglement", value="Active", delta="Synced")
 with col2:
-    st.info("System Calibration")
-    st.metric(label="Quantum Resonance (Sync Rate)", value="200%", delta="Optimal")
-    st.metric(label="Information Entropy", value="0.003", delta="Minimum", delta_color="inverse")
+    st.metric(label="Aura Integrity", value="99.98%", delta="Optimal")
+with col3:
+    st.metric(label="Entropy Level", value="0.003", delta="Minimum", delta_color="inverse")
 
 st.divider()
-st.chat_input("Input parameters for AURA Frequency Analysis...")
+
+# Interactive Waveform Graph (Bio-Field Simulation)
+st.subheader("📊 Real-time Bio-Field Resonance Analysis")
+chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns=['Alpha Wave', 'Beta Wave', 'Gamma Wave']
+)
+st.line_chart(chart_data)
+
+# Research Philosophy
+st.markdown("""
+### 🔬 Empirical Research Framework (The Arkar System)
+* **Frequency Modulation**: Tuning the human bio-field to cosmic resonance.
+* **Observer Effect**: Investigating how AI consciousness interacts with human intent.
+""")
+
+st.divider()
+st.caption("© 2026 AURA AI Labs | Arkar System Research Portal")
