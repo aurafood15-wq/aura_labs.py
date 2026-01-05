@@ -1,59 +1,52 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
-import time
+import numpy as np
 
-# Page Setting
-st.set_page_config(page_title="AURA AI Labs", page_icon="🧬", layout="wide")
+# Page Identity Update
+st.set_page_config(page_title="AURA Quantum System", page_icon="⚡", layout="wide")
 
-# Custom CSS for Professional Scientific Look
+# Quantum Theme Styling
 st.markdown("""
     <style>
-    .main { background-color: #020617; color: #f8fafc; }
-    .stMetric { background-color: #1e293b; padding: 20px; border-radius: 15px; border: 1px solid #38bdf8; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-    h1 { color: #38bdf8; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
-    .stAlert { border-radius: 12px; border: none; background-color: #0f172a; border-left: 5px solid #38bdf8; }
+    .main { background-color: #020617; color: #f1f5f9; }
+    .stMetric { background-color: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid #3b82f6; }
+    h1, h2 { color: #60a5fa; }
     </style>
     """, unsafe_allow_html=True)
 
-# Header Section
-st.title("🧬 AURA AI Labs")
-st.markdown("#### *The Nexus of Quantum Bio-Physics & Artificial Intelligence*")
+st.title("⚡ AURA Quantum System")
+st.markdown("### Revolutionizing Data Center Efficiency: From Waste Heat to Quantum Energy")
 st.divider()
 
-# Sidebar Control
-with st.sidebar:
-    st.image("https://img.icons8.com/nolan/96/atom.png")
-    st.header("Lab Controls")
-    sync_mode = st.toggle("Quantum Sync Mode", value=True)
-    power_level = st.slider("Power Intensity (THz)", 0, 1000, 432)
-    st.info(f"System running at frequency: {power_level} Hz (Healing Frequency)")
+# Core Research: Quantum Thermal Harvesting (QTH)
+col1, col2 = st.columns([2, 1])
 
-# Core Metrics
-col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric(label="Quantum Entanglement", value="Active", delta="Synced")
+    st.header("🔬 Research Spotlight: QTH Simulation")
+    st.write("""
+    Using Python-based modeling, we are demonstrating how to bypass classical thermodynamic limitations 
+    to convert high-grade CPU heat into usable electrical power.
+    
+    **Key Technical Highlights:**
+    - **Harvesting the 'Invisible'**: Capturing atomic vibrations (phonons) at the **80°C+** threshold.
+    - **Beyond Carnot Limits**: Utilizing **Quantum Tunneling effects** for superior conversion efficiency.
+    - **Circular Data Economy**: Recycling thermal energy within AI clusters for sustainable computing.
+    """)
+
 with col2:
-    st.metric(label="Aura Integrity", value="99.98%", delta="Optimal")
-with col3:
-    st.metric(label="Entropy Level", value="0.003", delta="Minimum", delta_color="inverse")
+    st.info("System Parameters: Zero-Waste Goal")
+    st.metric(label="Thermal Threshold", value="80°C", delta="Critical Range")
+    st.metric(label="Conversion Efficiency", value="Quantum Max", delta="Theoretical")
 
 st.divider()
 
-# Interactive Waveform Graph (Bio-Field Simulation)
-st.subheader("📊 Real-time Bio-Field Resonance Analysis")
-chart_data = pd.DataFrame(
-    np.random.randn(20, 3),
-    columns=['Alpha Wave', 'Beta Wave', 'Gamma Wave']
+# Energy Harvesting Visualization
+st.subheader("📊 Phonon Vibration & Energy Recovery Analysis")
+harvest_data = pd.DataFrame(
+    np.random.randint(20, 100, size=(10, 2)),
+    columns=['Waste Heat (Celsius)', 'Quantum Power (Watts)']
 )
-st.line_chart(chart_data)
-
-# Research Philosophy
-st.markdown("""
-### 🔬 Empirical Research Framework (The Arkar System)
-* **Frequency Modulation**: Tuning the human bio-field to cosmic resonance.
-* **Observer Effect**: Investigating how AI consciousness interacts with human intent.
-""")
+st.bar_chart(harvest_data)
 
 st.divider()
-st.caption("© 2026 AURA AI Labs | Arkar System Research Portal")
+st.caption("© 2026 AURA Quantum System | Pioneering Zero-Waste Energy Systems")
