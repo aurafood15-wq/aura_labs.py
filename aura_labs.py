@@ -2,51 +2,64 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Page Identity Update
-st.set_page_config(page_title="AURA Quantum System", page_icon="⚡", layout="wide")
+# Page Config
+st.set_page_config(page_title="AURA Quantum System", page_icon="🌐", layout="wide")
 
-# Quantum Theme Styling
+# Styling
 st.markdown("""
     <style>
     .main { background-color: #020617; color: #f1f5f9; }
-    .stMetric { background-color: #0f172a; padding: 15px; border-radius: 12px; border: 1px solid #3b82f6; }
-    h1, h2 { color: #60a5fa; }
+    h1, h2, h3 { color: #60a5fa; }
+    .stSidebar { background-color: #0f172a; }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("⚡ AURA Quantum System")
-st.markdown("### Revolutionizing Data Center Efficiency: From Waste Heat to Quantum Energy")
-st.divider()
+# --- SIDEBAR NAVIGATION ---
+with st.sidebar:
+    st.title("🧭 Navigation")
+    page = st.radio("Go to:", ["Research Portal", "Categories", "About AURA"])
+    st.divider()
+    st.info("System Status: Online (200% Sync)")
 
-# Core Research: Quantum Thermal Harvesting (QTH)
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    st.header("🔬 Research Spotlight: QTH Simulation")
-    st.write("""
-    Using Python-based modeling, we are demonstrating how to bypass classical thermodynamic limitations 
-    to convert high-grade CPU heat into usable electrical power.
+# --- PAGE 1: RESEARCH PORTAL (HOME) ---
+if page == "Research Portal":
+    st.title("⚡ AURA Quantum System: Research Portal")
+    st.subheader("Quantum Thermal Harvesting (QTH) Simulation")
     
-    **Key Technical Highlights:**
-    - **Harvesting the 'Invisible'**: Capturing atomic vibrations (phonons) at the **80°C+** threshold.
-    - **Beyond Carnot Limits**: Utilizing **Quantum Tunneling effects** for superior conversion efficiency.
-    - **Circular Data Economy**: Recycling thermal energy within AI clusters for sustainable computing.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.write("**Current Focus:** Converting Data Center Waste Heat to Energy")
+        # LinkedIn data visualization
+        data = {'Parameter': ['CPU Heat (°C)', 'Quantum Power (W)'], 'Value': [70.95, 5.86]}
+        df = pd.DataFrame(data)
+        st.bar_chart(df.set_index('Parameter'))
+    with col2:
+        st.metric("Thermal Threshold", "80°C", "Critical")
+        st.metric("Sync Rate", "200%", "Optimal")
+
+# --- PAGE 2: CATEGORIES ---
+elif page == "Categories":
+    st.title("📂 Research Categories")
+    tab1, tab2, tab3 = st.tabs(["Quantum Energy", "AI Sustainability", "Bio-Information"])
+    
+    with tab1:
+        st.subheader("Quantum Thermal Harvesting")
+        st.write("Beyond Carnot limits research focusing on phonon-to-electron conversion.")
+    with tab2:
+        st.subheader("Circular Data Economy")
+        st.write("Recycling thermal outputs for self-sustaining AI clusters.")
+    with tab3:
+        st.subheader("Aura Field Analysis")
+        st.write("Analyzing biological electromagnetic signatures at the quantum level.")
+
+# --- PAGE 3: ABOUT AURA ---
+elif page == "About AURA":
+    st.title("🔬 About AURA Quantum System")
+    st.write("""
+    **Mission:** To pioneer zero-waste energy systems using quantum mechanics.
+    
+    **History:** Built upon 20 years of empirical observations and advanced Python-based modeling. 
+    AURA represents the bridge between classical physics and the future of quantum resource harvesting.
     """)
-
-with col2:
-    st.info("System Parameters: Zero-Waste Goal")
-    st.metric(label="Thermal Threshold", value="80°C", delta="Critical Range")
-    st.metric(label="Conversion Efficiency", value="Quantum Max", delta="Theoretical")
-
-st.divider()
-
-# Energy Harvesting Visualization
-st.subheader("📊 Phonon Vibration & Energy Recovery Analysis")
-harvest_data = pd.DataFrame(
-    np.random.randint(20, 100, size=(10, 2)),
-    columns=['Waste Heat (Celsius)', 'Quantum Power (Watts)']
-)
-st.bar_chart(harvest_data)
-
-st.divider()
-st.caption("© 2026 AURA Quantum System | Pioneering Zero-Waste Energy Systems")
+    st.divider()
+    st.markdown("[Visit LinkedIn Profile for more updates](https://www.linkedin.com/in/maung-maung-hla-11a3b3105/)")
