@@ -2,7 +2,6 @@ import streamlit as st
 import time
 import numpy as np
 import pandas as pd
-import plotly.graph_objects as go
 
 # --- PAGE CONFIGURATION (Scientist-Approvel Style) ---
 st.set_page_config(
@@ -83,7 +82,7 @@ elif menu == "Demo 1: Hardware Optimization":
             for i in range(100):
                 time.sleep(0.05) # Slow processing
                 progress_bar.progress(i + 1)
-                status_text.text(f"Processing... CPU Temp: {50 + i/2}°C")
+                status_text.text(f"Processing... CPU Temp: {50 + i/2:.1f}°C")
             
             st.error("❌ Result: High Latency | High Heat Output")
             st.metric(label="Processing Time", value="5.2s", delta="- Efficiency Loss", delta_color="inverse")
@@ -104,7 +103,7 @@ elif menu == "Demo 1: Hardware Optimization":
             st.success("✅ Result: Zero Latency | Thermal Stability")
             st.metric(label="Processing Time", value="0.5s", delta="+ 1040% Speed Boost")
 
-    # Visualizing the Data
+    # Visualizing the Data (Simple Streamlit Chart)
     st.markdown("### 📊 Real-time Entropy Analysis")
     chart_data = pd.DataFrame({
         'Standard (Heat)': np.random.randn(20) + 10,
@@ -135,12 +134,13 @@ elif menu == "Demo 2: Agri-Regeneration":
             st.balloons()
             st.success(f"🌱 SUCCESS: Entropy reversed. Yield potential restored to 98%.")
 
-    # Graph showing recovery
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=[0, 1, 2, 3, 4], y=[100, 80, 50, 20, 0], mode='lines', name='Natural Decay (Death)', line=dict(color='red', dash='dash')))
-    fig.add_trace(go.Scatter(x=[2, 3, 4, 5], y=[50, 75, 90, 98], mode='lines+markers', name='AURA Intervention', line=dict(color='#00FF99', width=4)))
-    
-    st.plotly_chart(fig, use_container_width=True)
+    # Graph showing recovery (Using Native Streamlit Chart instead of Plotly)
+    st.markdown("### 📈 Recovery Trajectory")
+    recovery_data = pd.DataFrame({
+        'Natural Decay (Death)': [100, 80, 50, 20, 0],
+        'AURA Intervention': [50, 75, 90, 95, 98]
+    })
+    st.area_chart(recovery_data)
 
 # --- SECTION 4: FOUNDER PROFILE ---
 elif menu == "Founder Profile":
@@ -149,7 +149,6 @@ elif menu == "Founder Profile":
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        # Placeholder for Image - using an emoji or generic avatar for now
         st.markdown("# 👨‍💻")
         st.markdown("### Rocker Saint")
         st.caption("Founder | Autodidact | Visionary")
@@ -163,13 +162,8 @@ elif menu == "Founder Profile":
         
         **Connect:**
         * [LinkedIn Profile](https://www.linkedin.com/) (Click to Connect)
-        * 📧 Email: [Your Email Here]
+        * 📧 Email: aura.founder@example.com
         """)
         
     st.markdown("---")
     st.info("🦁 **Status:** Open for Seed Investment & Research Partnership (DeepMind/Google).")
-
-streamlit
-numpy
-pandas
-plotly
