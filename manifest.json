@@ -1,0 +1,15 @@
+{
+  "name": "AURA Quantum System",
+  "short_name": "AURA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/nolan/512/atom.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
