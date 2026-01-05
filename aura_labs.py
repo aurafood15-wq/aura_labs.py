@@ -168,3 +168,8 @@ elif menu == "Founder Profile":
         
     st.markdown("---")
     st.info("🦁 **Status:** Open for Seed Investment & Research Partnership (DeepMind/Google).")
+
+streamlit
+numpy
+pandas
+plotly
