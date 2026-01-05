@@ -3,7 +3,7 @@ import time
 import numpy as np
 import pandas as pd
 
-# --- PAGE CONFIGURATION (Scientist-Approvel Style) ---
+# --- PAGE CONFIGURATION (Scientist-Approved Style) ---
 st.set_page_config(
     page_title="AURA LABS | Zero-Entropy Engine",
     page_icon="⚛️",
@@ -29,6 +29,10 @@ st.markdown("""
         padding: 15px;
         border-radius: 10px;
         border: 1px solid #333;
+    }
+    a {
+        color: #00FF99 !important;
+        text-decoration: none;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -127,43 +131,4 @@ elif menu == "Demo 2: Agri-Regeneration":
         
     with col2:
         # The Solution
-        st.metric(label="AURA Intervention Potential", value="98%", delta="Optimized")
-        if st.button("Activate Bio-Pulse"):
-            with st.spinner('Calculating nutrient micro-dosing...'):
-                time.sleep(1.5)
-            st.balloons()
-            st.success(f"🌱 SUCCESS: Entropy reversed. Yield potential restored to 98%.")
-
-    # Graph showing recovery (Using Native Streamlit Chart instead of Plotly)
-    st.markdown("### 📈 Recovery Trajectory")
-    recovery_data = pd.DataFrame({
-        'Natural Decay (Death)': [100, 80, 50, 20, 0],
-        'AURA Intervention': [50, 75, 90, 95, 98]
-    })
-    st.area_chart(recovery_data)
-
-# --- SECTION 4: FOUNDER PROFILE ---
-elif menu == "Founder Profile":
-    st.title("🦁 The Architect")
-    
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        st.markdown("# 👨‍💻")
-        st.markdown("### Rocker Saint")
-        st.caption("Founder | Autodidact | Visionary")
-        
-    with col2:
-        st.markdown("""
-        > *"I do not write code to build apps. I write code to fix the broken laws of thermodynamics."*
-        
-        **Rocker Saint** is the founder of AURA, bridging the gap between Quantum Physics and Industrial Application. 
-        With a background in self-taught engineering and a "Lion's Heart" approach to problem-solving, he is building the engine for the next generation of computing and agriculture.
-        
-        **Connect:**
-        * [LinkedIn Profile](https://www.linkedin.com/) (Click to Connect)
-        * 📧 Email: aura.founder@example.com
-        """)
-        
-    st.markdown("---")
-    st.info("🦁 **Status:** Open for Seed Investment & Research Partnership (DeepMind/Google).")
+        st.metric
